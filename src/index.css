@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 0%; // Black background
+    --foreground: 348 87% 51%; // Red foreground
     
     --card: 240 5% 12%;
     --card-foreground: 0 0% 98%;
@@ -13,8 +13,8 @@
     --popover: 240 10% 8%;
     --popover-foreground: 0 0% 98%;
     
-    --primary: 258 78% 74%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 348 87% 51%; // Red primary
+    --primary-foreground: 0 0% 100%; // White
     
     --secondary: 240 5% 17%;
     --secondary-foreground: 0 0% 98%;
@@ -52,10 +52,10 @@
   }
   
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-cse-purple to-cse-neon;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#ea384c] to-white;
   }
 
   .gradient-border {
-    @apply relative after:absolute after:inset-0 after:p-[1px] after:rounded-lg after:bg-gradient-to-r after:from-cse-purple after:to-cse-neon after:-z-10;
+    @apply relative after:absolute after:inset-0 after:p-[1px] after:rounded-lg after:bg-gradient-to-r after:from-[#ea384c] after:to-white after:-z-10;
   }
 }
