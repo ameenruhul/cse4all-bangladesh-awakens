@@ -11,12 +11,12 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-black border-b border-white/10 sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <a href="/" className="flex items-center">
-              <span className="text-xl font-bold text-cse-dark">
+              <span className="text-xl font-bold text-white">
                 CSE<span className="text-cse-purple">4</span>ALL
               </span>
             </a>
@@ -28,7 +28,7 @@ const Header = () => {
               variant="ghost" 
               size="sm" 
               onClick={toggleMenu}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-white hover:text-cse-purple"
             >
               <Menu className="h-5 w-5" />
             </Button>
@@ -44,7 +44,7 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="absolute top-16 inset-x-0 bg-white shadow-lg rounded-b-lg border-t md:hidden animate-fade-in">
+            <div className="absolute top-16 inset-x-0 bg-black shadow-lg rounded-b-lg border-t border-white/10 md:hidden animate-fade-in">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <MobileNavLink href="/" active>Home</MobileNavLink>
                 <MobileNavLink href="#about">About</MobileNavLink>
@@ -70,7 +70,7 @@ const NavLink = ({ href, children, active }: NavLinkProps) => {
     <a
       href={href}
       className={`text-base font-medium transition-colors hover:text-cse-purple ${
-        active ? "text-cse-purple" : "text-gray-700"
+        active ? "text-cse-purple" : "text-white"
       }`}
     >
       {children}
@@ -84,8 +84,8 @@ const MobileNavLink = ({ href, children, active }: NavLinkProps) => {
       href={href}
       className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
         active 
-          ? "bg-cse-softPurple text-cse-purple" 
-          : "text-gray-700 hover:bg-gray-50 hover:text-cse-purple"
+          ? "bg-white/5 text-cse-purple" 
+          : "text-white hover:bg-white/5 hover:text-cse-purple"
       }`}
     >
       {children}
