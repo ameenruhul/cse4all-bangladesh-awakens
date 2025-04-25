@@ -70,7 +70,13 @@ export default {
 					tertiaryPurple: '#6E59A5',
 					softPurple: '#E5DEFF',
 					gray: '#8E9196',
-					softBlue: '#D3E4FD'
+					softBlue: '#D3E4FD',
+					neon: '#00f2ff',
+					darkBg: '#121212',
+					darkCard: '#1E1E1E',
+					darkAccent: '#2A2A2A',
+					gradient1: '#9b87f5',
+					gradient2: '#00f2ff'
 				}
 			},
 			fontFamily: {
@@ -118,11 +124,27 @@ export default {
 						transform: 'translateY(10px)'
 					}
 				},
+				'glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 5px #9b87f5, 0 0 15px #9b87f5'
+					},
+					'50%': {
+						boxShadow: '0 0 20px #9b87f5, 0 0 30px #00f2ff'
+					}
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
+				'glow': 'glow 2s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'hero-gradient': 'linear-gradient(to bottom right, #1A1F2C, #121212)',
+				'card-gradient': 'linear-gradient(to bottom right, #1E1E1E, #2A2A2A)',
+				'cta-gradient': 'linear-gradient(to right, #9b87f5, #00f2ff)',
+				'button-gradient': 'linear-gradient(to right, #9b87f5, #7E69AB)'
 			}
 		}
 	},
