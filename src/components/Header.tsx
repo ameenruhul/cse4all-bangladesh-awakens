@@ -16,9 +16,11 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <a href="/" className="flex items-center">
-              <span className="text-xl font-bold text-white">
-                CSE<span className="text-cse-purple">4</span>ALL
-              </span>
+              <img 
+                src="/lovable-uploads/39f31937-d2c2-48fd-9ed4-af411633da06.png" 
+                alt="CSE4ALL Logo" 
+                className="h-10 w-auto mr-2"
+              />
             </a>
           </div>
 
