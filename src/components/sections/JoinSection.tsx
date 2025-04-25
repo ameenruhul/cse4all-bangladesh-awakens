@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const JoinSection = () => {
   const { toast } = useToast();
@@ -12,6 +13,7 @@ const JoinSection = () => {
     email: "",
     background: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -21,8 +23,9 @@ const JoinSection = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     // Simple validation
     if (!formData.name || !formData.email || !formData.background) {
@@ -31,23 +34,44 @@ const JoinSection = () => {
         description: "Please fill in all fields",
         variant: "destructive",
       });
+      setIsSubmitting(false);
       return;
     }
 
-    // Registration logic would go here in a real app
-    console.log("Form submitted:", formData);
-    
-    toast({
-      title: "Registration Successful!",
-      description: "Thank you for your interest in CSE4ALL. We will contact you with further details.",
-    });
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      background: "",
-    });
+    try {
+      const { error } = await supabase.from('registrations').insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          background: formData.background
+        }
+      ]);
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Registration Successful!",
+        description: "Thank you for your interest in CSE4ALL. We will contact you with further details.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        background: "",
+      });
+    } catch (error) {
+      console.error('Registration error:', error);
+      toast({
+        title: "Registration Failed",
+        description: "An error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -132,8 +156,9 @@ const JoinSection = () => {
                   <Button 
                     type="submit" 
                     className="w-full bg-cse-purple hover:bg-cse-secondaryPurple text-white py-3"
+                    disabled={isSubmitting}
                   >
-                    Register for the 2025 Batch
+                    {isSubmitting ? "Registering..." : "Register for the 2025 Batch"}
                   </Button>
                 </form>
               </div>
