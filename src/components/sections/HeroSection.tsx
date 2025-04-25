@@ -18,6 +18,14 @@ const HeroSection = () => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/lovable-uploads/39f31937-d2c2-48fd-9ed4-af411633da06.png" 
+              alt="CSE4ALL Logo" 
+              className="h-24 w-auto" // Increased logo size
+            />
+          </div>
+          
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
             <span className="gradient-text">CSE4ALL:</span> Your Free Path to <span className="gradient-text">Mastering</span> Computer Science
           </h1>

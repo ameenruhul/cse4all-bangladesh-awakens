@@ -9,7 +9,7 @@ import JoinSection from "@/components/sections/JoinSection";
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      {/* Removed Header */}
       <main className="flex-grow">
         <HeroSection />
         <AboutSection />
