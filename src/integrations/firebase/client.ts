@@ -1,6 +1,6 @@
 
 // Firebase configuration
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
@@ -16,8 +16,20 @@ const firebaseConfig = {
   measurementId: "G-97D29R9FLY"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase - only initialize if no apps exist to prevent duplicate error
+let app;
+if (getApps().length === 0) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApps()[0];
+}
+
 export const auth = getAuth(app);
 export const firestore = getFirestore(app);
-export const analytics = getAnalytics(app);
+
+// Only initialize analytics in browser environment
+let analytics;
+if (typeof window !== 'undefined') {
+  analytics = getAnalytics(app);
+}
+export { analytics };
