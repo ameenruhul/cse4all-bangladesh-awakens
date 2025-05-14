@@ -1,10 +1,10 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { firestore } from "@/integrations/firebase/client";
+import { collection, addDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
 
 const JoinSection = () => {
@@ -40,17 +40,13 @@ const JoinSection = () => {
     }
 
     try {
-      const { error } = await supabase.from('registrations').insert([
-        {
-          name: formData.name,
-          email: formData.email,
-          background: formData.background
-        }
-      ]);
-
-      if (error) {
-        throw error;
-      }
+      // Add document to Firestore collection
+      await addDoc(collection(firestore, "registrations"), {
+        name: formData.name,
+        email: formData.email,
+        background: formData.background,
+        createdAt: new Date()
+      });
 
       toast({
         title: "Registration Successful!",
